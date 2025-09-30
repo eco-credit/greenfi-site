@@ -1,0 +1,436 @@
+/* -------------------------------
+   CSS Variables (easy amendments)
+-------------------------------- */
+:root {
+  /* Layout sizing */
+  --sidebar-width: 200px;
+  --topbar-height: 60px;
+  --footer-height: 50px;
+  --main-padding: 2rem;
+  --max-text-width: 850px;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --text-color: #000;
+  --font-size: 16px;
+  --line-height: 1.6;
+
+  /* Spacing rhythm */
+  --paragraph-spacing: 1.2rem;
+  --heading-spacing-large: 2rem;    /* h2 */
+  --heading-spacing-medium: 1.5rem; /* h3 */
+  --image-spacing: 1.5rem;
+  --first-heading-offset: 1.5rem;   /* top align with sidebar */
+
+  /* Sidebar */
+  --sidebar-bg: #f4f4f4;
+  --sidebar-link-spacing: 1rem;
+  --sidebar-icon-size: 1.2rem;
+  --sidebar-icon-gap: 0.5rem;
+  --sidebar-width-collapsed: 60px; /* narrow collapsed state */
+
+  /* Footer */
+  --footer-bg: #f4f4f4;
+  --footer-font-size: 0.9rem;
+
+  /* Photos */
+  --image-max-width: 100%;          /* % of column width */
+  --image-full-width: 100%;         /* % of main area */
+  --image-border-radius: 0;         /* e.g. 0 or 8px */
+  --image-shadow: none;             /* e.g. none or 0 2px 8px rgba(0,0,0,0.1) */
+
+  /* NEW: Main background */
+  --main-bg: #fff;
+}
+
+/* -------------------------------
+   Reset
+-------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background: var(--main-bg);
+  overflow: hidden; /* scrolling only inside .main */
+}
+
+html { scroll-padding-top: var(--topbar-height); }
+
+/* -------------------------------
+   Top Bar
+-------------------------------- */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: var(--topbar-height);
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* left + right alignment */
+  align-items: center;
+  background: var(--main-bg);
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.top-left {
+  width: var(--sidebar-width);
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.top-right {
+  flex: unset;             /* no forced expansion */
+  padding-left: 0;
+  padding-right: 1rem;     /* spacing from right edge */
+  display: flex;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.logo img {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+/* Hamburger button */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background-color: #888;  /* gray, unobtrusive */
+  border-radius: 1px;
+  transition: background-color 0.2s ease;
+}
+
+.hamburger:hover span {
+  background-color: #333;  /* darker on hover */
+}
+
+.whitepaper-btn {
+  margin-right: 1rem;         /* spacing before the hamburger */
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  background-color: #2f6f4e;  /* greenfi theme */
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.whitepaper-btn:hover {
+  background-color: #24553b;  /* darker on hover */
+}
+
+
+
+/* -------------------------------
+   Sidebar
+-------------------------------- */
+.sidebar {
+  position: fixed;
+  top: var(--topbar-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--topbar-height) - var(--footer-height));
+  background: var(--sidebar-bg);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin: var(--sidebar-link-spacing) 0;
+}
+
+
+/* Sidebar link row */
+.sidebar a {
+  display: flex;
+  align-items: center;         /* centers icon + text */
+  gap: var(--sidebar-icon-gap);/* spacing between icon + label */
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: var(--font-size);
+  
+}
+
+
+
+.sidebar a .label {
+  flex: 1;
+}
+
+
+
+/* -------------------------------
+   Main Content Container
+-------------------------------- */
+.main {
+  position: fixed;
+  top: var(--topbar-height);
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: calc(100vh - var(--topbar-height) - var(--footer-height));
+  background: var(--main-bg);
+  overflow-y: auto;
+  padding: 0 var(--main-padding) var(--main-padding) var(--main-padding);
+}
+
+/* -------------------------------
+   Text + Photo Column System
+-------------------------------- */
+.main section {
+  max-width: var(--max-text-width);
+  margin: 0 auto 3rem auto;
+  width: 100%;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+/* Headings */
+.main h2 {
+  margin: var(--heading-spacing-large) 0 1rem 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.main h3 {
+  margin: var(--heading-spacing-medium) 0 0.8rem 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* First section heading aligns with sidebar */
+.main section:first-of-type h2 {
+  margin-top: var(--first-heading-offset);
+}
+
+/* Paragraphs */
+.main p {
+  font-weight: 400;
+  margin-bottom: 1rem;  /* more modest default */
+}
+
+//* Sidebar + general icon-text */
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+
+
+/* Links */
+.main a { 
+  text-decoration: underline; 
+  color: var(--link-color);
+}
+
+/* Links: always black + underlined in content */
+.main a,
+.main a:visited,
+.main a:hover,
+.main a:active {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* CTA: keep bold if you like */
+.main a.cta-link {
+  font-weight: 600;
+}
+
+/* CTA (optional) */
+/* CTA links: clean look */
+.main a.cta-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: normal;   /* not bold */
+  text-decoration: none; /* no underline by default */
+  color: var(--cta-color);
+}
+
+.main a.cta-link:hover {
+  text-decoration: underline; /* underline on hover */
+}
+
+.main a.cta-link::after {
+  content: " →";
+}
+
+
+/* Images */
+.main img {
+  display: block;
+  max-width: var(--image-max-width);
+  height: auto;
+  margin: var(--image-spacing) auto;
+  border-radius: var(--image-border-radius);
+  box-shadow: var(--image-shadow);
+}
+
+.main img.full-width {
+  max-width: var(--image-full-width);
+}
+
+/* Brand (logo + text together) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;   /* space between logo + text */
+  padding-left: 1rem;
+}
+
+.brand .logo {
+  height: 30px;  /* adjust size of logo */
+  width: auto;
+}
+
+.brand .logo {
+  height: 32px;        /* or whatever fits nicely */
+  width: auto;
+  margin-right: 8px;   /* 🔑 space between logo and text */
+}
+
+.brand .site-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+
+
+/* Sidebar-only icon-text styling */
+.sidebar .icon-text {
+  display: flex;
+  align-items: center;   /* keep icon + text vertically centered */
+  gap: 0.5rem;           /* spacing between icon and text */
+  margin: 0.2rem 0;      /* tighter spacing top + bottom */
+  line-height: 1.2;      /* more compact */
+}
+
+/* Case Study page layout*/
+.case-study dt {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+.case-study dd {
+  margin: 0 0 0.4rem 0;
+}
+
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;  /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  margin: 2em auto;        /* centers horizontally */
+  max-width: 900px;        /* makes it bigger, adjust as needed */
+  width: 100%;             /* ensures it scales down on small screens */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+
+
+
+/* -------------------------------
+   Footer
+-------------------------------- */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: var(--footer-height);
+  width: 100%;
+  background: var(--footer-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--footer-font-size);
+  border-top: 1px solid #ddd;
+}
+
+/* -------------------------------
+   Collapsed State
+-------------------------------- */
+body.collapsed .sidebar {
+  width: var(--sidebar-width-collapsed);
+}
+
+body.collapsed .sidebar .label {
+  display: none; /* hide link text labels */
+}
+
+body.collapsed .main {
+  left: var(--sidebar-width-collapsed);
+  width: calc(100% - var(--sidebar-width-collapsed));
+}
+/* -------------------------------
+   Mobile Overlay Sidebar
+-------------------------------- */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: var(--topbar-height);
+    left: -100%; /* hidden off-screen by default */
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--topbar-height));
+    background: var(--sidebar-bg);
+    transition: left 0.3s ease;
+    z-index: 1500; /* above main content */
+  }
+
+  /* On mobile, "collapsed" = visible */
+  body.collapsed .sidebar {
+    left: 0; /* slide in fully, with icons + labels */
+  }
+
+  /* Sidebar labels should always show on mobile */
+  .sidebar .label {
+    display: inline;
+  }
+
+  /* Main content stays full width */
+  .main {
+    left: 0;
+    width: 100%;
+  }
+}
+
