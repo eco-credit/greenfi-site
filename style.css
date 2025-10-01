@@ -432,5 +432,24 @@ body.collapsed .main {
     left: 0;
     width: 100%;
   }
-}
 
+  /* ✅ Force hamburger visible above sidebar */
+  .hamburger {
+    display: flex !important;
+    position: relative;
+    z-index: 2000; /* above sidebar */
+  }
+  .hamburger span {
+    background-color: #333; /* dark bars */
+  }
+
+  /* ✅ Hide footer on mobile */
+  .footer {
+    display: none !important;
+  }
+
+  /* ✅ Show footer only on Contacts page */
+  body.contacts .footer {
+    display: flex !important;
+  }
+}
