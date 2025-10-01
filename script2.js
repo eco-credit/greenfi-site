@@ -8,10 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const html = await res.text();
       main.innerHTML = html;
 
-  // Re-run Lucide to replace <i data-lucide="...">
-    if (window.lucide) {
-      lucide.createIcons();
-    }
+// ✅ Reset scroll inside .main container
+main.scrollTop = 0;
+
+
+// Re-run Lucide to replace <i data-lucide="...">
+if (window.lucide) {
+  lucide.createIcons();
+}
+
 
 
   // After injecting new content, re-wire any internal links
