@@ -239,7 +239,7 @@ html { scroll-padding-top: var(--topbar-height); }
   margin-bottom: 1rem;  /* more modest default */
 }
 
-//* Sidebar + general icon-text */
+/* Sidebar + general icon-text */
 .icon-text {
   display: flex;
   align-items: center;
