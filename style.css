@@ -433,33 +433,21 @@ body.collapsed .main {
     width: 100%;
   }
 
-  /* ✅ Force hamburger visible + Safari fixes */
+  /* ✅ Force hamburger visible above sidebar */
   .hamburger {
-    display: flex !important;
-    position: absolute;
-    top: 14px;              /* explicit offset (no translateY Safari bug) */
-    right: 1rem;
-    z-index: 5000;          /* above everything */
-    will-change: transform; /* Safari rendering hint */
-    -webkit-backface-visibility: hidden;
-  }
+  display: flex !important;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  z-index: 5000;
+}
 
-  .hamburger span {
-    display: block;
-    width: 100%;
-    height: 3px;                /* thicker: prevents Retina disappearing */
-    margin: 3px 0;              /* spacing between bars */
-    background-color: #000 !important;
-    border-radius: 2px;
-  }
-
-  /* ✅ Hide footer on mobile */
-  .footer {
-    display: none !important;
-  }
-
-  /* ✅ Show footer only on Contacts page */
-  body.contacts .footer {
-    display: flex !important;
-  }
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;                 /* was 2px → bump to 3px */
+  margin: 4px 0;               /* spacing between bars */
+  background-color: #000 !important;
+  border-radius: 2px;
 }
