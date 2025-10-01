@@ -435,13 +435,18 @@ body.collapsed .main {
 
   /* ✅ Force hamburger visible above sidebar */
   .hamburger {
-    display: flex !important;
-    position: relative;
-    z-index: 2000; /* above sidebar */
-  }
-  .hamburger span {
-    background-color: #333; /* dark bars */
-  }
+  display: flex !important;
+  position: absolute;       /* pin inside the top bar */
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  z-index: 5000;            /* far above sidebar and top bar */
+}
+
+.hamburger span {
+  background-color: #333;   /* dark, visible bars */
+}
+
 
   /* ✅ Hide footer on mobile */
   .footer {
