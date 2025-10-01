@@ -433,21 +433,25 @@ body.collapsed .main {
     width: 100%;
   }
 
-  /* ✅ Force hamburger visible above sidebar */
+  /* ✅ Force hamburger visible + Safari fixes */
   .hamburger {
-  display: flex !important;
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
-  z-index: 5000;
-}
+    display: flex !important;
+    position: absolute;
+    top: 14px;              /* explicit offset (no translateY Safari bug) */
+    right: 1rem;
+    z-index: 5000;          /* above everything */
+    will-change: transform; /* Safari rendering hint */
+    -webkit-backface-visibility: hidden;
+  }
 
-.hamburger span {
-  background-color: #000 !important; /* solid black for visibility */
-}
-
-
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;                /* thicker: prevents Retina disappearing */
+    margin: 3px 0;              /* spacing between bars */
+    background-color: #000 !important;
+    border-radius: 2px;
+  }
 
   /* ✅ Hide footer on mobile */
   .footer {
