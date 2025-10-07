@@ -37,6 +37,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://greenfi.org/insights.html</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://greenfi.org/contact.html</loc>
     <lastmod>2025-10-07</lastmod>
     <changefreq>yearly</changefreq>
