@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reusable loader
   async function loadSection(section) {
     try {
-      const res = await fetch(`content/${section}.html`, { cache: 'no-store' });
+      const res = await fetch(`${section}.html`, { cache: 'no-store' });
       const html = await res.text();
       main.innerHTML = html;
 
