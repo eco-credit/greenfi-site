@@ -529,37 +529,30 @@ body.collapsed .main {
 }
 
 /* -------------------------------
-   Mobile Overlay Sidebar
+   Mobile (≤768px)
 -------------------------------- */
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
     top: var(--topbar-height);
-    left: -100%; /* hidden off-screen by default */
+    left: -100%;
     width: var(--sidebar-width);
     height: calc(100vh - var(--topbar-height));
     background: var(--sidebar-bg);
     transition: left 0.3s ease;
-    z-index: 1500; /* above main content */
+    z-index: 1500;
   }
 
   /* On mobile, "collapsed" = visible */
-  body.collapsed .sidebar {
-    left: 0; /* slide in fully, with icons + labels */
-  }
+  body.collapsed .sidebar { left: 0; }
 
   /* Sidebar labels should always show on mobile */
-  .sidebar .label {
-    display: inline;
-  }
+  .sidebar .label { display: inline; }
 
   /* Main content stays full width */
-  .main {
-    left: 0;
-    width: 100%;
-  }
+  .main { left: 0; width: 100%; }
 
-  /* ✅ Hamburger: explicit height + thicker bars */
+  /* Hamburger: explicit height + thicker bars */
   .hamburger {
     display: flex !important;
     flex-direction: column;
@@ -569,24 +562,42 @@ body.collapsed .main {
     right: 1rem;
     transform: translateY(-50%);
     width: 24px;
-    height: 20px;           /* explicit height box */
+    height: 20px;
     z-index: 5000;
   }
-
   .hamburger span {
-    flex: 0 0 3px;          /* fixed 3px height each */
+    flex: 0 0 3px;
     width: 100%;
     background-color: #000 !important;
     border-radius: 2px;
   }
 
-  /* ✅ Hide footer on mobile */
-  .footer {
+  /* Hide footer on mobile, show on Contacts page only */
+  .footer { display: none !important; }
+  body.contacts .footer { display: flex !important; }
+
+  /* Hide logos in main content on mobile (keep sidebar icons) */
+  .main img[src*="logo"],
+  .main .logo {
+    display: none !important;
+  }
+}
+/* Mobile: hide Lucide icons in MAIN headings */
+@media (max-width: 768px) {
+  /* hide both pre-render <i> and rendered <svg> icons */
+  .main h2 i[data-lucide],
+  .main h2 svg.lucide,
+  .main h3 i[data-lucide],
+  .main h3 svg.lucide,
+  .main h5 i[data-lucide],
+  .main h5 svg.lucide {
     display: none !important;
   }
 
-  /* ✅ Show footer only on Contacts page */
-  body.contacts .footer {
-    display: flex !important;
+  /* tighten heading layout when icons are removed */
+  .main h2,
+  .main h3,
+  .main h5 {
+    gap: 0 !important;
   }
 }
