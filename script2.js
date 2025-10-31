@@ -54,3 +54,15 @@ if (window.lucide) {
     });
   }
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const main = document.getElementById('main-content');
+  if (!main) return;
+
+  main.addEventListener('scroll', () => {
+    const indicator = document.querySelector('.scroll-indicator');
+    if (!indicator) return;
+
+    const nearBottom = main.scrollTop + main.clientHeight >= main.scrollHeight - 100;
+    indicator.style.opacity = nearBottom ? '0' : '0.85';
+  });
+});

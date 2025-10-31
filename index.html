@@ -21,6 +21,24 @@
     flex-shrink: 0;
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Greenfi",
+  "url": "https://greenfi.org",
+  "logo": "https://greenfi.org/assets/icons/blacklogo.png",
+  "sameAs": [
+    "https://x.com/greenfi_org",
+    "https://www.linkedin.com/company/greenfi-org/"
+  ],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://greenfi.org/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 
   
 </head>
@@ -55,7 +73,7 @@
       </li>
       <li>
         <a href="#approach" data-section="approach" class="icon-text">
-          <img src="assets/icons/methodology.svg" alt="Approach" class="lucide-icon">
+          <img src="assets/icons/blocks.svg" alt="Approach" class="lucide-icon">
           <span class="label">Approach</span>
         </a>
       </li>
@@ -124,6 +142,18 @@
 <script>
   lucide.createIcons();
 </script>
+
+<div class="scroll-indicator">
+  <i data-lucide="chevron-down"></i>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons(); // render Lucide icon
+});
+</script>
+
+
 </body>
 </html>
 

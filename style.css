@@ -43,6 +43,11 @@
   --main-bg: #fff;
 }
 
+/* Bold Config */
+strong {
+  font-weight: 500; /* medium emphasis, not full bold */
+}
+
 /* -------------------------------
    Reset
 -------------------------------- */
@@ -216,17 +221,98 @@ html { scroll-padding-top: var(--topbar-height); }
 }
 
 /* Headings */
+
 .main h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem; /* same logic as h3 */
   margin: var(--heading-spacing-large) 0 1rem 0;
   font-size: 1.6rem;
   font-weight: 600;
 }
 
+.main h2 i[data-lucide] {
+  width: 1.3em;           /* proportional to text size */
+  height: 1.3em;
+  stroke-width: 2;        /* slightly bolder for h2 */
+  margin-left: -2px;      /* optical align like h3 */
+  position: relative;
+  top: 1px;               /* aligns icon midline to text */
+  flex-shrink: 0;
+}
+
+
+
+
+
+
+
 .main h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;          /* balanced spacing between icon and text */
   margin: var(--heading-spacing-medium) 0 0.8rem 0;
   font-size: 1.2rem;
   font-weight: 500;
 }
+
+.main h3 i[data-lucide] {
+  width: 1.1em;          /* slightly smaller than text height */
+  height: 1.1em;
+  stroke-width: 1.8;     /* lighter line for subtlety */
+  margin-left: -2px;     /* optically aligns icon with text block */
+  position: relative;
+  top: 1px;              /* nudges it perfectly to text midline */
+  flex-shrink: 0;
+}
+
+.main h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-left: 2.2rem; /* ✅ aligns with .step-text */
+}
+
+
+
+
+/* -------------------------------
+   Step Layout (numbered sections)
+-------------------------------- */
+.step {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.step h5 {
+  display: inline-flex;          /* keeps natural left flow */
+  align-items: center;           /* vertical centering */
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1rem 0 0.4rem 0;
+  gap: 0.4rem;
+}
+
+.step h5 i[data-lucide] {
+  width: 1.1em;
+  height: 1.1em;
+  stroke-width: 1.8;
+  position: relative;
+  top: 1px;                      /* optical alignment */
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.step-text {
+  margin-left: 2.2rem; /* aligns text exactly under heading text */
+  font-weight: 400;
+}
+
+
 
 /* First section heading aligns with sidebar */
 .main section:first-of-type h2 {
@@ -275,9 +361,11 @@ html { scroll-padding-top: var(--topbar-height); }
 .main a.cta-link {
   display: inline-block;
   margin-top: 1rem;
-  font-weight: normal;   /* not bold */
-  text-decoration: none; /* no underline by default */
-  color: var(--cta-color);
+  font-weight: 400;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 .main a.cta-link:hover {
@@ -367,6 +455,37 @@ html { scroll-padding-top: var(--topbar-height); }
   border: none;
 }
 
+/* -------------------------------
+   Scroll down indicator
+-------------------------------- */
+
+.scroll-indicator {
+  position: fixed;
+  bottom: 70px; /* just above footer */
+  right: 1rem; /* position within main content */
+  z-index: 900;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* keep it stable when sidebar collapses */
+body.collapsed .scroll-indicator {
+  right: 2rem;
+}
+
 
 
 
@@ -402,6 +521,13 @@ body.collapsed .main {
   left: var(--sidebar-width-collapsed);
   width: calc(100% - var(--sidebar-width-collapsed));
 }
+
+
+/* ✅ Align step headings with paragraph text */
+.step h5 {
+  margin-left: 2.2rem !important; /* match .step-text indent */
+}
+
 /* -------------------------------
    Mobile Overlay Sidebar
 -------------------------------- */
