@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const main = document.getElementById('main-content');
+  // Footer sits at the end of each page's content, so it only shows once
+  // you scroll to the bottom (instead of being pinned to the screen).
+  const footer = document.querySelector('.footer');
 
   // Reusable loader
   async function loadSection(section) {
@@ -7,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(`${section}.html`, { cache: 'no-store' });
       const html = await res.text();
       main.innerHTML = html;
+      if (footer) main.appendChild(footer);
 
 // ✅ Reset scroll inside .main container
 main.scrollTop = 0;
